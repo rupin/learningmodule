@@ -1,6 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.conf import settings
+from django.contrib.auth.models import AbstractUser
+
+class CustomUser(AbstractUser):
+    pass
 
 #this model saves the modules currently being offered	
 class Module(models.Model):
