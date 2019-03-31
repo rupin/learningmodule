@@ -11,8 +11,8 @@ class CustomUser(AbstractUser):
 class Module(models.Model):
 	module_id = models.BigIntegerField(primary_key=True)
 	module_name = models.CharField(max_length=50)
-    module_category = models.CharField(max_length=50)
-    module_grade= models.CharField(max_length=100)
+	module_category = models.CharField(max_length=50)
+	module_grade= models.CharField(max_length=100)
 	
 
 #this model saves the relationship between which module has been offered by which user. It will also have schedule information associated with it.
