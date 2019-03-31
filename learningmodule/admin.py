@@ -9,4 +9,4 @@ from .models import *
 admin.site.register(CustomUser, UserAdmin)
 admin.site.register(Module)
 admin.site.register(Schedule)
-admin.site.register(Milestone)
+#admin.site.register(Milestone)
