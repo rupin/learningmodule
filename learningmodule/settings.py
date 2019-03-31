@@ -74,8 +74,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'ESPWeigh.wsgi.application'
-AUTH_USER_MODEL = 'userModel.CustomUser'
+WSGI_APPLICATION = 'learningmodule.wsgi.application'
+AUTH_USER_MODEL = 'learningmodule.CustomUser'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
