@@ -1,1 +1,1 @@
-def homePage():	return HttpResponse("You are at the homepage")
+def homePage(request):	return HttpResponse("You are at the homepage")
