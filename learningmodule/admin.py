@@ -3,6 +3,8 @@ from .models import *
 
 
 
+
+
 admin.site.register(CustomUser)
 admin.site.register(Module)
 admin.site.register(Schedule)
