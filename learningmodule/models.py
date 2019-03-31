@@ -19,3 +19,9 @@ class Schedule(models.Model):
 	fk_module_id=models.ForeignKey(Module, on_delete=models.CASCADE)
 	fk_user_id = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
 
+#this model saves the relationship between which module has been taken by which user, and which schedule it was done on.
+class Milestone(models.Model):	
+	milestone_id=models.BigAutoField(primary_key=True)
+	fk_schedule_id=models.ForeignKey(Schedule, on_delete=models.CASCADE)
+	fk_module_id=models.ForeignKey(Module, on_delete=models.CASCADE)
+	fk_user_id = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
