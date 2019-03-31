@@ -1,1 +1,1 @@
-def homePage(request):	return HttpResponse("You are at the homepage")
+from django.http import HttpResponsefrom django.template import loaderdef homePage(request):	return HttpResponse("You are at the homepage")
