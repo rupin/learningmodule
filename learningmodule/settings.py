@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'ESPWeigh.urls'
+ROOT_URLCONF = 'learningmodule.urls'
 
 TEMPLATES = [
     {
