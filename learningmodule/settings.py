@@ -1,5 +1,5 @@
 """
-Django settings for learningmodule project on Heroku. For more info, see:
+Django settings for ESPWeigh project on Heroku. For more info, see:
 https://github.com/heroku/heroku-django-template
 
 For more information on this file, see
@@ -22,7 +22,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "7%@5d%b1$y6ksu)8cra)@5#dw5bf5-qlbk@5u264x&zno2yzsl"
+SECRET_KEY = "axe_fp^pcqr%^^1_9e644qm75&5^l$-1fj(mk*i$b&344r-obh"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     # Disable Django's own staticfiles handling in favour of WhiteNoise, for
     # greater consistency between gunicorn and `./manage.py runserver`. See:
     # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
-    #'whitenoise.runserver_nostatic',
-    #'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
+    'django.contrib.staticfiles',
+    'import_export',
+	'learningmodule'
 ]
 
 MIDDLEWARE = [
@@ -53,7 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'learningmodule.urls'
+ROOT_URLCONF = 'ESPWeigh.urls'
 
 TEMPLATES = [
     {
@@ -72,17 +74,17 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'learningmodule.wsgi.application'
+WSGI_APPLICATION = 'ESPWeigh.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+DEBUG = os.environ.get('DEBUG', default=False)
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -129,9 +131,20 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, 'static'),
 ]
 
+
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+#Save Media Files on S3
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#AWS_ACCESS_KEY_ID=os.environ.get("AWS_ACCESS_KEY_ID")
+#AWS_SECRET_ACCESS_KEY=os.environ.get("AWS_SECRET_ACCESS_KEY")
+#AWS_STORAGE_BUCKET_NAME=os.environ.get("AWS_STORAGE_BUCKET_NAME")
+#AWS_DEFAULT_ACL=os.environ.get("AWS_DEFAULT_ACL")
+#AWS_AUTO_CREATE_BUCKET =True
+#AWS_S3_REGION_NAME =os.environ.get("AWS_S3_REGION_NAME")
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 # Activate Django-Heroku.
 django_heroku.settings(locals())
